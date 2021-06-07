@@ -3,6 +3,7 @@ import Upload from '../components/UploadFile/Upload'
 import "../styles/components.css"
 import Logo from "../assets/logo.png"
 import FileTable from '../components/FileTable/FileTable'
+import Chart from '../components/Chart/Chart'
 
 const Home = () => {
     return (
@@ -17,6 +18,8 @@ const Home = () => {
                 <Upload />
                 <FileTable />
             </div>
+
+            <Chart/>
         </div>
     )
 }

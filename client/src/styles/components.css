@@ -18,13 +18,14 @@
 
 .container{
     margin: auto 8px;
-    height: calc(100vh - 70px);
+    height: 480px;
     display: flex;
 }
 
 @media(max-width: 1200px){
     .container{
         flex-direction: column;
+        height: fit-content;
     }
 }
 
@@ -45,6 +46,7 @@ button{
 .upload-container{
     margin: 16px;
     flex-basis: 30%;
+    max-height: 100%;
 }
 
 .title{
@@ -117,7 +119,23 @@ button{
 
 .files-container{
     padding: 16px;
+    padding-bottom: 6px;
     border: 1px solid #d3d3d3;
+    height: 379px;
+    position: relative;
+}
+
+.search-box{
+    margin-bottom: 16px;
+}
+
+.search-box input{
+    padding: 6px 4px;
+    font-size: 14px;
+    outline: 0;
+    border: 1px solid #d3d3d3;
+    width: 100%;
+    border-radius: 2px;
 }
 
 .table{
@@ -127,7 +145,7 @@ button{
 
 .table th,
 .table td{
-    text-align: left;
+    text-align: center;
     padding: 10px;
     font-size: 12px;
 }
@@ -147,6 +165,35 @@ button{
 
 .table tr:nth-child(odd){
     background-color: #d3d3d341;
+}
+
+.svg-icon{
+    font-size: 16px !important;
+}
+
+.svg-icon.copy{
+    color: #3983d8 !important;
+}
+
+.page-slider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: #0000006c;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.page-slider .svg-icon{
+    font-size: 20px !important;
+}
+
+.page-slider p{
+    font-size: 12px;
+    margin: 0;
 }
 
 

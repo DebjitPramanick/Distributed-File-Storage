@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import StorageContract from "./contracts/Storage.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
 import Home from "./views/Home";
+import BlockChainContext from "./utils/BlockchainContext";
 
 const App = () => {
-  // const [storageVal, setStorageVal] = useState(undefined)
   const [web3, setWeb3] = useState(undefined)
   const [accounts, setAccounts] = useState([])
   const [contract, setContract] = useState({})
+  const [files, setFiles] = useState([])
 
   useEffect(() => {
     const init = async () => {
@@ -22,11 +23,9 @@ const App = () => {
 
         // Get the contract instance.
         const networkId = await web3.eth.net.getId();
-        console.log(networkId)
-        const deployedNetwork = SimpleStorageContract.networks[networkId];
-        console.log(deployedNetwork)
+        const deployedNetwork = StorageContract.networks[networkId];
         const instance = new web3.eth.Contract(
-          SimpleStorageContract.abi,
+          StorageContract.abi,
           deployedNetwork && deployedNetwork.address,
         )
 
@@ -48,24 +47,27 @@ const App = () => {
 
 
   useEffect(() => {
-    const load = async () => {
-      // Stores a given value, 5 by default.
-      await contract.methods.set(5807).send({ from: accounts[0] });
+    const getFiles = async () => {
+      const fileCount = await contract.methods.fileCount().call()
+      const filesCollection = []
 
-      // Get the value from the contract to prove it worked.
-      const response = await contract.methods.get().call();
+      for(let i = fileCount; i >= 1; i--){
+        let curFile = await contract.methods.files(i).call()
+        filesCollection.push(curFile)
+      }
 
-      console.log(response)
-
-      // Update state with the result.
+      setFiles(filesCollection)
     }
 
     if (web3 !== undefined
       && accounts !== undefined
       && Object.keys(contract).length) {
-      load()
+        getFiles()
     }
   }, [web3, accounts, contract])
+
+
+  const values = {web3, accounts, contract, files}
 
 
   if (typeof web3 === 'undefined') {
@@ -73,9 +75,11 @@ const App = () => {
   }
   else {
     return (
-      <div className="App">
-        <Home />
-      </div>
+      <BlockChainContext.Provider value={values}>
+        <div className="App">
+          <Home />
+        </div>
+      </BlockChainContext.Provider>
     );
   }
 }
