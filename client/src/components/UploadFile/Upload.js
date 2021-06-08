@@ -42,11 +42,11 @@ const Upload = () => {
             await contract.methods.uploadFile(
                 response.path, response.size,
                 file.type, fileName, fileDesc)
-                .send({from: accounts[0]})
-                .on('error', e => {alert("error")})
+                .send({ from: accounts[0] })
+                .on('error', e => { alert("error") })
             window.location.reload()
         }
-        else{
+        else {
             alert("Fill all the fields.")
         }
     }
@@ -58,12 +58,12 @@ const Upload = () => {
 
                 <div className="partition">
                     <label className="label label-name">Enter file name:</label>
-                    <input className="input-name" value={fileName} onChange={(e)=>setFileName(e.target.value)}></input>
+                    <input className="input-name" value={fileName} onChange={(e) => setFileName(e.target.value)}></input>
                 </div>
 
                 <div className="partition">
                     <label className="label label-desc">Enter file description:</label>
-                    <textarea className="input-desc" value={fileDesc} onChange={(e)=>setFileDesc(e.target.value)}></textarea>
+                    <textarea className="input-desc" value={fileDesc} onChange={(e) => setFileDesc(e.target.value)}></textarea>
                 </div>
 
                 <div className="partition">
@@ -74,7 +74,9 @@ const Upload = () => {
                     </button>
                 </div>
 
-                <button className="upload-btn" onClick={upload}>Upload</button>
+                <button className="upload-btn" onClick={upload}>
+                    Upload
+                </button>
 
 
             </div>

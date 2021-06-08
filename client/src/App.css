@@ -20,3 +20,9 @@
 .App-link {
   color: #09d3ac;
 }
+
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
