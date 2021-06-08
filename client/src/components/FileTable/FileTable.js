@@ -13,6 +13,11 @@ const FileTable = (props) => {
     const [left, setLeft] = useState(0)
     const [right, setRight] = useState(6)
     const [curPage, setCurPage] = useState(1)
+    const [query, setQuery] = useState('')
+
+    const allFiles = files.filter(f => {
+        return f.fileName.toLowerCase().includes(query.toLowerCase());
+    })
 
 
     const handleRight = () => {
@@ -38,7 +43,7 @@ const FileTable = (props) => {
             <div className="files-container">
 
                 <div className="search-box">
-                    <input type="search" placeholder="Search files..." />
+                    <input type="search" placeholder="Search files..." value={query} onChange={(e)=>setQuery(e.target.value)}/>
                 </div>
                 <table className="table">
                     <tr>
@@ -49,7 +54,7 @@ const FileTable = (props) => {
                         <th>Actions</th>
                     </tr>
 
-                    {files.slice(left, right).map(f => (
+                    {allFiles.slice(left, right).map(f => (
                         <ListItem file={f} setModal={setModal} setcurFile={setcurFile} />
                     ))}
                 </table>
