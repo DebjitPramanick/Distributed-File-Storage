@@ -6,7 +6,7 @@ import ListItem from './ListItem';
 
 const FileTable = (props) => {
 
-    const { files } = useContext(BlockchainContext)
+    const { files, accounts, contract } = useContext(BlockchainContext)
     const { setModal, setcurFile } = props
 
     const pages = Math.ceil(files.length / 6)
@@ -55,7 +55,12 @@ const FileTable = (props) => {
                     </tr>
 
                     {allFiles.slice(left, right).map(f => (
-                        <ListItem file={f} setModal={setModal} setcurFile={setcurFile} />
+                        <ListItem 
+                        file={f} 
+                        setModal={setModal} 
+                        setcurFile={setcurFile} 
+                        accounts = {accounts}
+                        contract = {contract}/>
                     ))}
                 </table>
 

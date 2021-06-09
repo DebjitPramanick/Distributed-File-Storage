@@ -4,7 +4,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const ListItem = (props) => {
 
-    const { file, setModal, setcurFile } = props
+    const { file, setModal, setcurFile, accounts, contract } = props
 
     const ctrlBtn = useRef()
     const [menu, setMenu] = useState(false)
@@ -30,6 +30,15 @@ const ListItem = (props) => {
         }
     })
 
+    const delFile = async() => {
+        await contract.methods.deleteFile(file.fileId)
+            .send({ from: accounts[0] })
+            .on('error', e => { alert("error") })
+        window.location.reload()
+        setMenu(!menu)
+    }
+
+
 
     return (
         <tr>
@@ -47,7 +56,7 @@ const ListItem = (props) => {
                             <ul>
                                 <li onClick={() => { setModal(true); setcurFile(file); setMenu(!menu) }}>Details</li>
                                 <li>Download</li>
-                                <li>Delete</li>
+                                <li onClick={delFile}>Delete</li>
                             </ul>
                         </div>
                     )}

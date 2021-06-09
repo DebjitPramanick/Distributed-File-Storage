@@ -31,6 +31,17 @@ contract Storage {
       uint uploadTime,
       address payable uploader
   );
+
+  event FileDeleted(
+      uint fileId,
+      string fileHash,
+      uint fileSize,
+      string fileType,
+      string fileName,
+      string fileDesc,
+      uint uploadTime,
+      address payable uploader
+  );
   
   function uploadFile(
       string memory _hash,
@@ -52,6 +63,13 @@ contract Storage {
       files[fileCount] = File(id, _hash, _size, _type, _name, _desc, block.timestamp, msg.sender);
       
       emit FileUploaded(id, _hash, _size, _type, _name, _desc, block.timestamp, msg.sender);
+  }
+
+  function deleteFile(uint fileId) public {
+      require(msg.sender != files[fileId].uploader);
+      emit FileDeleted(fileId, files[fileId].fileHash, files[fileId].fileSize, files[fileId].fileType, files[fileId].fileName, files[fileId].fileDesc, block.timestamp, msg.sender);
+      delete(files[fileId]);
+      fileCount--;
   }
 
 }
