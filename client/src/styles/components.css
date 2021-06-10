@@ -243,10 +243,25 @@ button{
 }
 
 
-/* Chart component */
+/* Stat component */
 
-.highcharts-credits{
-    display: none;
+.stat-container{
+    margin: 16px;
+    flex-basis: 30%;
+    max-height: 100%;
+}
+
+.stat-box{
+    padding: 20px;
+    border: 1px solid #d3d3d3;
+}
+
+.stat-box p{
+    color: #0000006c;
+}
+
+.stat-box p span{
+    color: #040427;
 }
 
 

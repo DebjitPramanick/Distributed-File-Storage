@@ -1,11 +1,11 @@
 import React, { useRef, useState, useContext } from 'react'
 import "../../styles/components.css"
 import { create } from 'ipfs-http-client'
-import BlockChainContext from '../../utils/BlockchainContext'
+import BlockchainContext from '../../utils/BlockchainContext'
 
 const Upload = () => {
 
-    const { accounts, contract } = useContext(BlockChainContext)
+    const { accounts, contract } = useContext(BlockchainContext)
 
     const ipfs = create({
         host: "ipfs.infura.io",
@@ -77,8 +77,6 @@ const Upload = () => {
                 <button className="upload-btn" onClick={upload}>
                     Upload
                 </button>
-
-
             </div>
         </div>
     )

@@ -11,6 +11,7 @@ const App = () => {
   const [accounts, setAccounts] = useState([])
   const [contract, setContract] = useState({})
   const [files, setFiles] = useState([])
+  const [fileCount, setFileCount] = useState(null)
 
   useEffect(() => {
     const init = async () => {
@@ -48,14 +49,15 @@ const App = () => {
 
   useEffect(() => {
     const getFiles = async () => {
-      const fileCount = await contract.methods.fileCount().call()
+      const filecount = await contract.methods.fileCount().call()
+      setFileCount(filecount)
+
       const filesCollection = []
 
-      for(let i = fileCount; i >= 1; i--){
+      for(let i = filecount; i >= 1; i--){
         let curFile = await contract.methods.files(i).call()
         filesCollection.push(curFile)
       }
-
       setFiles(filesCollection)
     }
 
@@ -67,7 +69,7 @@ const App = () => {
   }, [web3, accounts, contract])
 
 
-  const values = {web3, accounts, contract, files}
+  const values = {web3, accounts, contract, files, fileCount}
 
 
   if (typeof web3 === 'undefined') {

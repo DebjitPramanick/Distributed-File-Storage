@@ -3,8 +3,8 @@ import Upload from '../components/UploadFile/Upload'
 import "../styles/components.css"
 import Logo from "../assets/logo.png"
 import FileTable from '../components/FileTable/FileTable'
-import Chart from '../components/Chart/Chart'
 import FileModal from '../components/Modal/FileModal'
+import FilesStat from '../components/FileStat/FilesStat'
 
 const Home = () => {
 
@@ -25,7 +25,10 @@ const Home = () => {
                 <FileTable setcurFile={setcurFile} setModal={setModal} />
             </div>
 
-            <Chart/>
+            <div className="container">
+                <FilesStat />
+                <FileTable setcurFile={setcurFile} setModal={setModal} />
+            </div>
 
             {modal && <FileModal file={curFile} setModal={setModal}/>}
         </div>

@@ -14,6 +14,9 @@ const ListItem = (props) => {
         return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
     }
 
+    let dummydate = new Date().getTime()
+    console.log(Math.ceil(dummydate/1000))
+
     const copyURL = (hash) => {
         let url = `https://ipfs.infura.io/ipfs/${hash}`
         navigator.clipboard.writeText(url).then(function () {

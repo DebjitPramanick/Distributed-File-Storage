@@ -4,6 +4,7 @@ contract Storage {
 
   string public name = 'DStorage';
   mapping(uint => File) public files;
+
   uint public fileCount = 0;
   
   struct File {
@@ -60,6 +61,7 @@ contract Storage {
       
       fileCount++;
       uint id = fileCount+block.timestamp;
+
       files[fileCount] = File(id, _hash, _size, _type, _name, _desc, block.timestamp, msg.sender);
       
       emit FileUploaded(id, _hash, _size, _type, _name, _desc, block.timestamp, msg.sender);
