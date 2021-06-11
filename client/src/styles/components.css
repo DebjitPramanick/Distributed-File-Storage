@@ -18,9 +18,16 @@
 
 .container{
     margin: auto 8px;
-    height: 480px;
+    min-height: calc(100vh - 50px);
     display: flex;
 }
+
+/* .vertical{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+} */
 
 @media(max-width: 1200px){
     .container{
@@ -51,7 +58,8 @@ button{
 
 .title{
     color: #040427;
-    margin-bottom: 16px;
+    height: 60px;
+    margin: 0;
 }
 
 .upload-box{
@@ -122,8 +130,8 @@ button{
     padding: 16px;
     padding-bottom: 6px;
     border: 1px solid #d3d3d3;
-    height: 379px;
     position: relative;
+    height: calc(100% - 60px)
 }
 
 .search-box{
@@ -247,7 +255,6 @@ button{
 
 .stat-container{
     margin: 16px;
-    flex-basis: 30%;
     max-height: 100%;
 }
 
@@ -258,6 +265,15 @@ button{
 
 .stat-box p{
     color: #0000006c;
+}
+
+.stat-box p:nth-child(4) span{
+    background-color: #d3d3d3;
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .stat-box p span{
@@ -322,7 +338,20 @@ button{
 
 @media(max-width: 1200px){
     .upload-container,
+    .stat-container,
     .file-table-container{
         margin: 0;
+        margin-top: 18px;
     }
+    
+    .title{
+        height: 50px;
+    }
+
+    .files-container{
+        min-height: 600px;
+        margin-bottom: 20px;
+    }
+
+
 }

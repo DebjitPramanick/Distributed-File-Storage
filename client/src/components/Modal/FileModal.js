@@ -21,6 +21,18 @@ const FileModal = (props) => {
         });
     }
 
+    function formatBytes(bytes, decimals = 2) {
+        if (bytes === 0) return '0 Bytes';
+    
+        const k = 1024;
+        const dm = decimals < 0 ? 0 : decimals;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+    
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    }
+
     return (
         <div className="modal-bg">
             <div className="file-modal">
@@ -35,7 +47,7 @@ const FileModal = (props) => {
                 <br/>
                 <div className="file-details">File Type: <span>{file.fileType}</span></div>
                 <br/>
-                <div className="file-details">File Size: <span>{file.fileSize} Bytes</span></div>
+                <div className="file-details">File Size: <span>{formatBytes(file.fileSize)}</span></div>
                 <br/>
                 <div className="file-details">File Hash: <span>{file.fileHash}</span></div>
                 <br/>

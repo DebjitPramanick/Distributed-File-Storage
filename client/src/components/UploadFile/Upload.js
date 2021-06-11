@@ -53,7 +53,7 @@ const Upload = () => {
 
     return (
         <div className="upload-container">
-            <h2 className="titile">Upload File</h2>
+            <h2 className="title">Upload File</h2>
             <div className="upload-box">
 
                 <div className="partition">

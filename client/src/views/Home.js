@@ -21,12 +21,10 @@ const Home = () => {
             </div>
 
             <div className="container">
-                <Upload />
-                <FileTable setcurFile={setcurFile} setModal={setModal} />
-            </div>
-
-            <div className="container">
-                <FilesStat />
+                <div className="vertical">
+                    <Upload />
+                    <FilesStat />
+                </div>
                 <FileTable setcurFile={setcurFile} setModal={setModal} />
             </div>
 
