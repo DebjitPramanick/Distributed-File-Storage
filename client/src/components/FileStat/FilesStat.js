@@ -7,7 +7,7 @@ const FilesStat = () => {
 
     let size = 0
 
-    let lastDate = files.length !== 0 ? files[0].uploadTime : 0
+    let lastDate = files.length !== 0 ? files[0].uploadTime : null
 
 
     const getDate = (timestamp) => {
@@ -40,7 +40,7 @@ const FilesStat = () => {
                     <>
                         <p>Number of uploaded files: <span>{fileCount}</span></p>
                         <p>Total size of uploaded files: <span>{formatBytes(size)}</span></p>
-                        <p>Last date you uploaded: <span>{getDate(lastDate)}</span></p>
+                        <p>Last date you uploaded: <span>{lastDate!==null ? getDate(lastDate) : 'Null'}</span></p>
                         <p>Wallet address: <span>{accounts[0]}</span></p>
                     </>
                 )}
